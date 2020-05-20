@@ -31,28 +31,31 @@ $(document).ready(function() {
                 'author': info.author,
                 'year': info.year,
                 'genre': info.genre,
+                'classe': info.genre,
             }
             var html_finale = template_function(disco);
             $('.cds-container.container').append(html_finale);
         }
 }
  function selectgeneri(infodischi) {
-     var schedadisco = $('#entry-template').html();
-     var template_function = Handlebars.compile(schedadisco);
      var generedisco = prompt('quale genere vuoi tra Rock, Pop, Jazz o Metal? ');
-     console.log(generedisco);
-     for (var i = 0; i < infodischi.length; i++) {
-         var info= infodischi[i];
-         console.log(info.genre);
-         if (info.genre == generedisco) {
-             // info.addClass('invisible');
-             var disco = {
-                 'classe': 'invisible',
-             }
-             var html_finale = template_function(disco);
-             $('.cds-container.container').append(html_finale);
-         }
-     }
+     $('.cd').addClass('invisible');
+     $('.cd.' + generedisco).removeClass('invisible');
+     // console.log(generedisco);
+     // for (var i = 0; i < infodischi.length; i++) {
+     //     var info= infodischi[i];
+     //     // console.log(info.genre);
+         // if (info.genre == generedisco) {
+         //     // info.addClass('invisible');
+         //     // console.log('stessogenere');qua dentro entra
+         //     info.classe= invisible;
+         //    // info.genre ='invisible';
+         //    // console.log(info.genre);
+         //    var html_finale = template_function(disco);
+         //    $('.cds-container.container').append(html_finale);
+         // }
+         // // console.log(info.genre);
+     // }
  }
 
 });
