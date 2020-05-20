@@ -18,7 +18,6 @@ $(document).ready(function() {
     }// fine oggetto
     );
 
-
     function stampahtml(infodischi) {
         var schedadisco = $('#entry-template').html();
         var template_function = Handlebars.compile(schedadisco);
@@ -30,6 +29,7 @@ $(document).ready(function() {
                 'title' : info.title,
                 'author': info.author,
                 'year': info.year,
+                'genre': info.genre,
             }
             var html_finale = template_function(disco);
             $('.cds-container.container').append(html_finale);
