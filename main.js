@@ -38,9 +38,11 @@ $(document).ready(function() {
         }
 }
  function selectgeneri(infodischi) {
-     var generedisco = prompt('quale genere vuoi tra Rock, Pop, Jazz o Metal? ');
-     $('.cd').addClass('invisible');
-     $('.cd.' + generedisco).removeClass('invisible');
+     // var generedisco = prompt('quale genere vuoi tra Rock, Pop, Jazz o Metal? ');
+     // nascondo tutte le schede
+     // $('.cd').addClass('invisible');
+     // mostro solo quelle che l'utente ha richiesto
+     // $('.cd.' + generedisco).removeClass('invisible');
      // console.log(generedisco);
      // for (var i = 0; i < infodischi.length; i++) {
      //     var info= infodischi[i];
@@ -57,6 +59,41 @@ $(document).ready(function() {
          // // console.log(info.genre);
      // }
  }
+
+ // controllo l'input a sx a ogni tasto digitato (tranne canc e back-space se usassi keypress)
+ $('.left .input-container').keyup(function(event){
+     // recupero il testo dell utente e tiro via gli spazi inutili e lo rendo tutto minuscolo per un confronto ,indipendentemente dal fatto che sia maiuscolo e minuscolo, delle sole lettere
+     var testo_utente = $('.left .input-container input').val().trim().toLowerCase();
+     // stampo ciò che leggo
+     // console.log('testo utente:' + testo_utente);
+     // controllo che l'utente non ha digitato nulla(ha riempito l'input)
+     if (testo_utente != '') {
+         // all interno di liste-chat prendo ogni h1
+         $('.cds-container .cd').each(function() {
+         // recupero il testo di questo h1 e lo rendo tutto minuscolo
+         var testo_genere = $(this).find('.genre').text().trim().toLowerCase();
+         // stampo il testo di ogni h1
+         console.log('testo h1:' + testo_genere);
+         // verifico se è uguale a quello inserito
+         if (testo_genere.includes(testo_utente)) {
+             // allora mostro solo lui(h1)
+             $(this).show();
+             // stampo il testo inserito dall'utente se  è contenuto id uno dei testi presenti negli h1
+             console.log('la digitazione inserita è inclusa nel nome sopra:' + testo_utente);
+
+         }
+         else {
+             // allora nascondo il resto delle .riga
+             $(this).hide();
+         }
+         })// chiudo l'each
+     }// chiudo l'if controllo input diverso da stringa vuota
+     else {// allora l'input è vuoto e rimostro tutte le .riga
+         $('.cd').show();
+     }
+     // }   // chiudo l'if del 13
+ });// chiudo il keyup
+
 
 });
 // quello che viene dal url
